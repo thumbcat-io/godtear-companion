@@ -15,6 +15,7 @@
 		0108280C23C1A99B0012C8EA /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0108280A23C1A99B0012C8EA /* Podfile */; };
 		0108280D23C1A99B0012C8EA /* Podfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = 0108280B23C1A99B0012C8EA /* Podfile.lock */; };
 		011202DE23CBDE3D008D40EA /* WarbandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011202DD23CBDE3C008D40EA /* WarbandViewController.swift */; };
+		017CDFA623CD9E67008DE51E /* godtear_companion_iOS_launchscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 017CDFA523CD9E67008DE51E /* godtear_companion_iOS_launchscreen.png */; };
 		01AAC12B23C5A74800AC7390 /* CohortsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AAC12A23C5A74800AC7390 /* CohortsViewController.swift */; };
 		01AAC12D23CA8FB400AC7390 /* CohortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AAC12C23CA8FB400AC7390 /* CohortViewController.swift */; };
 		01AAC12F23CA953B00AC7390 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AAC12E23CA953B00AC7390 /* UITableViewExtension.swift */; };
@@ -151,6 +152,7 @@
 		0108280A23C1A99B0012C8EA /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		0108280B23C1A99B0012C8EA /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = SOURCE_ROOT; };
 		011202DD23CBDE3C008D40EA /* WarbandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarbandViewController.swift; sourceTree = "<group>"; };
+		017CDFA523CD9E67008DE51E /* godtear_companion_iOS_launchscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = godtear_companion_iOS_launchscreen.png; sourceTree = "<group>"; };
 		01AAC12A23C5A74800AC7390 /* CohortsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CohortsViewController.swift; sourceTree = "<group>"; };
 		01AAC12C23CA8FB400AC7390 /* CohortViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CohortViewController.swift; sourceTree = "<group>"; };
 		01AAC12E23CA953B00AC7390 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				01AAC13523CA981E00AC7390 /* Cards */,
 				010827DC23C19D9C0012C8EA /* Assets.xcassets */,
 				010827DE23C19D9C0012C8EA /* LaunchScreen.storyboard */,
+				017CDFA523CD9E67008DE51E /* godtear_companion_iOS_launchscreen.png */,
 				010827E123C19D9C0012C8EA /* Info.plist */,
 				01AAC12E23CA953B00AC7390 /* UITableViewExtension.swift */,
 				01AAC1FF23CA99AA00AC7390 /* SettingsViewController.swift */,
@@ -716,6 +719,7 @@
 				01AAC1DA23CA981F00AC7390 /* ShayleLegendaryUnused.png in Resources */,
 				01AAC19F23CA981F00AC7390 /* HexlingsClash.png in Resources */,
 				01AAC1B623CA981F00AC7390 /* SneakyStabbersPlot.png in Resources */,
+				017CDFA623CD9E67008DE51E /* godtear_companion_iOS_launchscreen.png in Resources */,
 				01AAC1E223CA981F00AC7390 /* FinvarrLegendaryUnused.png in Resources */,
 				01AAC1C823CA981F00AC7390 /* RedBanditsClash.png in Resources */,
 				01AAC1BB23CA981F00AC7390 /* GrimgutClash.png in Resources */,
