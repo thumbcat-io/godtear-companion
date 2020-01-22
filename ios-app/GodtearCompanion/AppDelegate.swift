@@ -17,7 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let settingsViewController = SettingsViewController()
     private let cohortsViewController = CohortsViewController()
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
         
         cohortsViewController.title = "Cohorts"
         cohortsViewController.settingsViewController = self.settingsViewController
