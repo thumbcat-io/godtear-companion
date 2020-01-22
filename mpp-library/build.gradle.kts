@@ -46,7 +46,7 @@ dependencies {
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = "io.thumbcat.oss.godtearcompanion.mpp"
+    multiplatformResourcesPackage = "io.thumbcat.oss.gtcompanion.mpp"
 }
 
 // dependencies graph generator

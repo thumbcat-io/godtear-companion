@@ -1,6 +1,6 @@
 # Introduction
 
-**Godtear Companion** is an unofficial, open-source, mobile companion app for the board game [Godtear](https://steamforged.com/godtear) by [Steamforged Games](https://steamforged.com/).  
+**GTCompanion** (Godtear Companion) is an unofficial, open-source, mobile companion app for the board game [Godtear](https://steamforged.com/godtear) by [Steamforged Games](https://steamforged.com/).  
 
 **This project is currently under development!**
 

@@ -1,6 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-rootProject.name = "godtear-companion"
+rootProject.name = "GTCompanion"
 
 enableFeaturePreview("GRADLE_METADATA")
 

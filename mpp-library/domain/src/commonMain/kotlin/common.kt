@@ -1,1 +1,1 @@
-package io.thumbcat.oss.godtearcompanion.mpp.domain
+package io.thumbcat.oss.gtcompanion.mpp.domain

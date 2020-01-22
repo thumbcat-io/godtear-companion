@@ -4,7 +4,7 @@ object Versions {
         const val minSdkVersion = 22
         const val targetSdkVersion = 29
         const val compileSdkVersion = 29
-        const val applicationId = "io.thumbcat.oss.godtearcompanion"
+        const val applicationId = "io.thumbcat.oss.gtcompanion"
         const val versionCode = 1
         const val versionName = "0.1.0"
         const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

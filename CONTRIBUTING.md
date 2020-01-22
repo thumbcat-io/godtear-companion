@@ -4,7 +4,7 @@ title: Contributing
 
 # Contributing
 
-By contributing to `godtear-mobile-companion`, you accept and agree to the following terms and conditions for your present and future contributions submitted to `godtear-mobile-companion`. Except for the license granted herein to Thumbcat Software Solutions, LLC and recipients of software distributed by Thumbcat Software Solutions, LLC, you reserve all right, title, and interest in and to your contributions. All contributions are subject to the following [DCO + LICENSE](index.md) terms.    
+By contributing to `GTCompanion`, you accept and agree to the following terms and conditions for your present and future contributions submitted to `GTCompanion`. Except for the license granted herein to Thumbcat Software Solutions, LLC and recipients of software distributed by Thumbcat Software Solutions, LLC, you reserve all right, title, and interest in and to your contributions. All contributions are subject to the following [DCO + LICENSE](index.md) terms.    
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change. This project will follow [GitHub Flow](https://guides.github.com/introduction/flow/).  
 

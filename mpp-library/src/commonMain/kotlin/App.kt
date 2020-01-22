@@ -1,9 +1,9 @@
 import dev.icerock.moko.widgets.screen.Args
 import dev.icerock.moko.widgets.screen.BaseApplication
 import dev.icerock.moko.widgets.screen.Screen
-import io.thumbcat.oss.godtearcompanion.mpp.AppTheme
-import io.thumbcat.oss.godtearcompanion.mpp.SharedFactory
-import io.thumbcat.oss.godtearcompanion.mpp.universal.*
+import io.thumbcat.oss.gtcompanion.mpp.AppTheme
+import io.thumbcat.oss.gtcompanion.mpp.SharedFactory
+import io.thumbcat.oss.gtcompanion.mpp.universal.*
 import kotlin.reflect.KClass
 
 class App : BaseApplication() {

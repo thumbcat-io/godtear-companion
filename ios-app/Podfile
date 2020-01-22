@@ -7,19 +7,19 @@ inhibit_all_warnings!
 # need for correct invalidate of cache MultiPlatformLibrary.framework
 install! 'cocoapods', :disable_input_output_paths => true
 
-target 'GodtearCompanion' do
+target 'GTCompanion' do
   use_frameworks!
 
   # MultiPlatformLibrary
   pod 'MultiPlatformLibrary', :path => '../mpp-library'
   pod 'MultiPlatformLibraryMvvm', :git => 'https://github.com/icerockdev/moko-mvvm.git', :tag => 'release/0.4.0'
 
-  target 'GodtearCompanionTests' do
+  target 'GTCompanionTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'GodtearCompanionUITests' do
+  target 'GTCompanionUITests' do
     # Pods for testing
   end
 end

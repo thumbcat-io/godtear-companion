@@ -34,5 +34,5 @@ dependencies {
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = "io.thumbcat.oss.godtearcompanion.mpp.domain"
+    multiplatformResourcesPackage = "io.thumbcat.oss.gtcompanion.mpp.domain"
 }
