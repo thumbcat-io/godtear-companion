@@ -40,7 +40,7 @@ dependencies {
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = "io.thumbcat.oss.gtcompanion.mpp.cohortsexplorer"
+    multiplatformResourcesPackage = "io.thumbcat.oss.gtcompanion.mpp.diceprobability"
 }
 
 val generateMRTasks = listOf(

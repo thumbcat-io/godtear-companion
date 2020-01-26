@@ -1,4 +1,4 @@
-package io.thumbcat.oss.gtcompanion.mpp.cohortsexplorer
+package io.thumbcat.oss.gtcompanion.mpp.domain
 
 import kotlinx.serialization.Serializable
 

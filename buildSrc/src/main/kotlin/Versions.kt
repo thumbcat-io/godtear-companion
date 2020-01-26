@@ -12,7 +12,7 @@ object Versions {
 
     const val kotlin = "1.3.61"
 
-    private const val mokoResources = "0.6.0"
+    private const val mokoResources = "0.6.2"
     private const val mokoNetwork = "0.2.0"
     private const val mokoUnits = "0.2.0-dev-2" // temporary dev version
 
@@ -41,6 +41,8 @@ object Versions {
             const val testExtJUnit = "1.1.1"
             const val espressoCore = "3.2.0"
             const val recyclerView = "1.1.0"
+            const val testOrchestrator = "1.2.0"
+            const val testRunner = "1.2.0"
         }
 
         object MultiPlatform {

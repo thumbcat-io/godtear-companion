@@ -35,6 +35,12 @@ object Deps {
             val lifecycle = AndroidLibrary(
                 name = "androidx.lifecycle:lifecycle-extensions:${Versions.Libs.Android.lifecycle}"
             )
+            val testRunner = AndroidLibrary(
+                name = "androidx.test:runner:${Versions.Libs.Android.testRunner}"
+            )
+            val testOrchestrator = AndroidLibrary(
+                name = "androidx.test:orchestrator:${Versions.Libs.Android.testOrchestrator}"
+            )
         }
 
         object MultiPlatform {

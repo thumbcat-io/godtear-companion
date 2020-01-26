@@ -29,5 +29,6 @@ include(":mpp-library")
 
 listOf(
     Modules.MultiPlatform.domain,
-    Modules.MultiPlatform.Feature.cohortsExplorer
+    Modules.MultiPlatform.Feature.cohortsExplorer,
+    Modules.MultiPlatform.Feature.diceProbability
 ).forEach { include(it.name) }

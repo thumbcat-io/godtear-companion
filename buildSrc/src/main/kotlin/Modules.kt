@@ -10,6 +10,10 @@ object Modules {
                 name = ":mpp-library:feature:cohorts-explorer",
                 exported = true
             )
+            val diceProbability = MultiPlatformModule(
+                name = ":mpp-library:feature:dice-probability",
+                exported = true
+            )
         }
     }
 }
