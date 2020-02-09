@@ -1,0 +1,32 @@
+style: github
+template: CHANGELOG.tpl.md
+info:
+  title: CHANGELOG
+  repository_url: https://github.com/thumbcat-io/godtear-companion
+options:
+  commits:
+     filters:
+       Type:
+         - feat
+         - fix
+         - perf
+         - refactor
+         - chore
+         - doc
+  commit_groups:
+     title_maps:
+       feat: Features
+       fix: Bug Fixes
+       perf: Performance Improvements
+       refactor: Code Refactoring
+       chore: Project and Build Process Changes
+       doc: Documentation Updates / Typo Corrections
+  header:
+    pattern: "^(\\w*)(?:\\(([\\w\\$\\.\\-\\*\\s]*)\\))?\\:\\s(.*)$"
+    pattern_maps:
+      - Type
+      - Scope
+      - Subject
+  notes:
+    keywords:
+      - BREAKING CHANGE
