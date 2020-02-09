@@ -31,7 +31,8 @@ val mppLibs = listOf(
     Deps.Libs.MultiPlatform.napier,
     Deps.Libs.MultiPlatform.mokoParcelize,
     Deps.Libs.MultiPlatform.mokoResources,
-    Deps.Libs.MultiPlatform.mokoMvvm
+    Deps.Libs.MultiPlatform.mokoMvvm,
+    Deps.Libs.MultiPlatform.mokoUnits
 )
 val mppModules = listOf(
     Modules.MultiPlatform.domain,
@@ -45,6 +46,9 @@ setupFramework(
 
 dependencies {
     mppLibrary(Deps.Libs.MultiPlatform.kotlinStdLib)
+    mppLibrary(Deps.Libs.MultiPlatform.coroutines)
+
+    androidLibrary(Deps.Libs.Android.lifecycle)
 
     mppLibs.forEach { mppLibrary(it) }
     mppModules.forEach { mppModule(it) }

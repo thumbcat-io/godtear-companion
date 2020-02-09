@@ -28,8 +28,10 @@ android {
 
 dependencies {
     mppLibrary(Deps.Libs.MultiPlatform.kotlinStdLib)
+    mppLibrary(Deps.Libs.MultiPlatform.coroutines)
 
     mppLibrary(Deps.Libs.MultiPlatform.mokoMvvm)
+    mppLibrary(Deps.Libs.MultiPlatform.mokoUnits)
     mppLibrary(Deps.Libs.MultiPlatform.mokoResources)
 
     androidTestImplementation(Deps.Libs.Android.testRunner.name)
