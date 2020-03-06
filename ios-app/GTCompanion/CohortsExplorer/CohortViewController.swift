@@ -8,34 +8,158 @@
 import UIKit
 import MultiPlatformLibrary
 
-class CohortViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class CohortViewController: UIViewController, UIScrollViewDelegate {
+    private let stateController: StateController
+    private var scrollView: UIScrollView!
+    private var championScrollView: UIScrollView!
+    private var followerScrollView: UIScrollView!
+    private let traitViewController = TraitViewController()
     
-    private let cellIdentifier = "CohortCell"
+    var championImages: [UIImage]!
+    var followerImages: [UIImage]!
     
-    private let tableView = UITableView()
+    let cohort: CohortsExplorerRowData
+    let isChampionStart: Bool
     
-    weak var cohort: Cohort!
+    init(
+        stateController: StateController,
+        cohort: CohortsExplorerRowData,
+        isChampionStart: Bool
+    ) {
+        self.stateController = stateController
+        self.cohort = cohort
+        self.isChampionStart = isChampionStart
+        super.init(nibName: nil, bundle: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let mainFrame = getCalculatedMainFrame()
         setBackgroundColors()
-        view.addSubview(tableView)
-        tableView.anchor(
-            top: view.safeAreaLayoutGuide.topAnchor,
-            left: view.safeAreaLayoutGuide.leftAnchor,
-            bottom: view.safeAreaLayoutGuide.bottomAnchor,
-            right: view.safeAreaLayoutGuide.rightAnchor,
-            paddingTop: 0,
-            paddingLeft: 0,
-            paddingBottom: 0,
-            paddingRight: 0,
-            width: 0,
-            height: 0,
-            enableInsets: false
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .organize,
+            target: self,
+            action: #selector(showTraitView)
         )
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        tableView.dataSource = self
-        tableView.delegate = self
+        
+        championImages = cohort.championImages
+        followerImages = cohort.followerImages
+        
+        scrollView = UIScrollView(frame: mainFrame)
+        scrollView.isPagingEnabled = true
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.delegate = self
+        scrollView.contentSize = CGSize(
+            width: UIScreen.main.bounds.width,
+            height: mainFrame.height * 2
+        )
+        view.addSubview(scrollView)
+        
+        let startY: CGFloat
+        if isChampionStart {
+            startY = scrollView.bounds.origin.y
+        } else {
+            startY = scrollView.frame.height
+        }
+        
+        championScrollView = UIScrollView(frame:
+            CGRect(
+                x: 0,
+                y: scrollView.bounds.origin.y,
+                width: scrollView.frame.width,
+                height: scrollView.frame.height
+            )
+        )
+        championScrollView.isPagingEnabled = true
+        championScrollView.showsVerticalScrollIndicator = false
+        championScrollView.showsHorizontalScrollIndicator = false
+        championScrollView.delegate = self
+        scrollView.addSubview(championScrollView)
+        
+        for i in 0..<championImages.count {
+            let image: UIImage = championImages[i]
+            let oSize: CGSize = image.size
+            let oWidth = oSize.width
+            let scale = scrollView.frame.width / oWidth
+            let width = oWidth * scale
+
+            let imageView = UIImageView(image: image)
+            imageView.tag = i
+            let xPosition = UIScreen.main.bounds.width * CGFloat(i)
+            imageView.frame = CGRect(
+                x: xPosition,
+                y: 0,
+                width: width,
+                height: scrollView.frame.height
+            )
+            championScrollView.contentSize.width = width * CGFloat(i + 1)
+            championScrollView.addSubview(imageView)
+            imageView.contentMode = .scaleAspectFit
+        }
+        
+        followerScrollView = UIScrollView(frame:
+            CGRect(
+                x: 0,
+                y: scrollView.frame.height,
+                width: scrollView.frame.width,
+                height: scrollView.frame.height
+            )
+        )
+        followerScrollView.isPagingEnabled = true
+        followerScrollView.showsVerticalScrollIndicator = false
+        followerScrollView.showsHorizontalScrollIndicator = false
+        followerScrollView.delegate = self
+        scrollView.addSubview(followerScrollView)
+        
+        for i in 0..<followerImages.count {
+            let image: UIImage = followerImages[i]
+            let oSize: CGSize = image.size
+            let oWidth = oSize.width
+            let scale = scrollView.frame.width / oWidth
+            let width = oWidth * scale
+
+            let imageView = UIImageView(image: image)
+            imageView.tag = i
+            let xPosition = UIScreen.main.bounds.width * CGFloat(i)
+            imageView.frame = CGRect(
+                x: xPosition,
+                y: 0,
+                width: width,
+                height: scrollView.frame.height
+            )
+            followerScrollView.contentSize.width = width * CGFloat(i + 1)
+            followerScrollView.addSubview(imageView)
+            imageView.contentMode = .scaleAspectFit
+        }
+        
+        scrollView.bounds.origin.y = startY
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView === self.scrollView {
+            let y = scrollView.bounds.origin.y
+            if y == 0 {
+                self.navigationItem.title = cohort.championName
+            } else if y == scrollView.frame.height {
+//                self.navigationItem.title = cohort.followerUnit.name
+                self.navigationItem.title = cohort.championName
+            } else {
+                // no need to update until scrollDidEnd
+            }
+            return
+        }
+        let sv: UIScrollView
+        if scrollView === championScrollView {
+            sv = followerScrollView
+        } else {
+            sv = championScrollView
+        }
+        if scrollView.bounds.origin.x == 0 {
+            sv.bounds.origin.x = 0
+        } else {
+            sv.bounds.origin.x = scrollView.frame.width
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,51 +167,19 @@ class CohortViewController: UIViewController, UITableViewDataSource, UITableView
         setBackgroundColors()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        tableView.deselectAllRows(animated: false)
-    }
-
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        if #available(iOS 13.0, *) {
-            if previousTraitCollection?.hasDifferentColorAppearance(comparedTo: traitCollection) ?? false {
-                setBackgroundColors()
-            }
-        } else {
-            // Fallback on earlier versions
-        }
+        setBackgroundColors()
     }
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        1
+    @objc
+    func showTraitView() {
+        traitViewController.images = [cohort.championTraits[0]]
+        navigationController?.pushViewController(traitViewController, animated: true)
     }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let isChampionStart = indexPath.row == 0
-        let warbandViewController = WarbandViewController(isChampionStart: isChampionStart)
-        warbandViewController.cohort = cohort
-        let title: String
-        if isChampionStart {
-            title = cohort.champion.name
-        } else {
-            title = cohort.follower.name
-        }
-        warbandViewController.title = title
-        navigationController!.pushViewController(warbandViewController, animated: true)
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        if indexPath.row == 0 {
-            cell.textLabel?.text = cohort.champion.name
-        } else {
-            cell.textLabel?.text = cohort.follower.name
-        }
-        return cell
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -95,12 +187,20 @@ extension CohortViewController {
     func setBackgroundColors() {
         if traitCollection.userInterfaceStyle == .dark {
             view.backgroundColor = .black
-            navigationController?.navigationBar.backgroundColor = .black
-            tabBarController?.view.backgroundColor = .black
         } else {
             view.backgroundColor = .white
-            navigationController?.navigationBar.backgroundColor = .lightGray
-            tabBarController?.view.backgroundColor = .lightGray
         }
+    }
+    func getCalculatedMainFrame() -> CGRect {
+        let navigationBarHeight = navigationController!.navigationBar.frame.height
+        let statusBarFrameHeight = UIApplication.shared.statusBarFrame.height
+        let tabBarHeight = tabBarController!.tabBar.frame.height
+        let y = navigationBarHeight + statusBarFrameHeight
+        return CGRect(
+            x: 0,
+            y: y,
+            width: view.frame.width,
+            height: view.frame.height - y - tabBarHeight
+        )
     }
 }

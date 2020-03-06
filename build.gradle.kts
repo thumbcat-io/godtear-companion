@@ -1,28 +1,20 @@
-plugins {
-    id("com.android.library") apply false
-    id("com.android.application") apply false
-    kotlin("multiplatform") apply false
-    kotlin("android") apply false
-    kotlin("android.extensions") apply false
-    kotlin("plugin.serialization") apply false
-    id("dev.icerock.mobile.multiplatform") apply false
-    id("com.gradle.build-scan")
-}
-
 allprojects {
     repositories {
-        commonRepositories()
+        mavenLocal()
+        google()
+        jcenter()
+        maven(url = "https://kotlin.bintray.com/kotlinx")
+        maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
+        maven(url = "https://dl.bintray.com/icerockdev/moko")
+        maven(url = "https://dl.bintray.com/aakira/maven")
     }
 
     // workaround for https://youtrack.jetbrains.com/issue/KT-27170
     configurations.create("compileClasspath")
 }
 
-buildScan {
-    termsOfServiceUrl = "https://gradle.com/terms-of-service"
-    termsOfServiceAgree = "yes"
-}
-
 tasks.register("clean", Delete::class) {
+    group = "build"
+    description = "cleans only the rootProject buildDir"
     delete(rootProject.buildDir)
 }

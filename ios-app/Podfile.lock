@@ -1,52 +1,16 @@
 PODS:
-  - Alamofire (4.9.1)
-  - AlamofireImage (3.6.0):
-    - Alamofire (~> 4.9)
   - MultiPlatformLibrary (0.1.0)
-  - MultiPlatformLibraryMvvm (0.3.0):
-    - MultiPlatformLibrary
-    - MultiPlatformLibraryMvvm/AlamofireImage (= 0.3.0)
-    - MultiPlatformLibraryMvvm/Core (= 0.3.0)
-    - MultiPlatformLibraryMvvm/SkyFloatingLabelTextField (= 0.3.0)
-  - MultiPlatformLibraryMvvm/AlamofireImage (0.3.0):
-    - AlamofireImage
-    - MultiPlatformLibrary
-  - MultiPlatformLibraryMvvm/Core (0.3.0):
-    - MultiPlatformLibrary
-  - MultiPlatformLibraryMvvm/SkyFloatingLabelTextField (0.3.0):
-    - MultiPlatformLibrary
-    - SkyFloatingLabelTextField
-  - SkyFloatingLabelTextField (3.8.0)
 
 DEPENDENCIES:
-  - MultiPlatformLibrary (from `../mpp-library`)
-  - MultiPlatformLibraryMvvm (from `https://github.com/icerockdev/moko-mvvm.git`, tag `release/0.4.0`)
-
-SPEC REPOS:
-  trunk:
-    - Alamofire
-    - AlamofireImage
-    - SkyFloatingLabelTextField
+  - MultiPlatformLibrary (from `../mpp-library/`)
 
 EXTERNAL SOURCES:
   MultiPlatformLibrary:
-    :path: "../mpp-library"
-  MultiPlatformLibraryMvvm:
-    :git: https://github.com/icerockdev/moko-mvvm.git
-    :tag: release/0.4.0
-
-CHECKOUT OPTIONS:
-  MultiPlatformLibraryMvvm:
-    :git: https://github.com/icerockdev/moko-mvvm.git
-    :tag: release/0.4.0
+    :path: "../mpp-library/"
 
 SPEC CHECKSUMS:
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
-  MultiPlatformLibrary: fd6bb32263a839de80d7bf4327d58982ba4ebd1f
-  MultiPlatformLibraryMvvm: 999ac3896d8214fd65e0e0a376a2e553bf4515b3
-  SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
+  MultiPlatformLibrary: a27c35cb46dd98bfeb20d3269895cc105b619729
 
-PODFILE CHECKSUM: e48ff53638036a89296df242dd0c86e8f5da4f8e
+PODFILE CHECKSUM: 8bdb96c2244dfe2619d50485e327fc0e3b06568a
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.0

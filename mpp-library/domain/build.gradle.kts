@@ -1,82 +1,87 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
-    kotlin("plugin.serialization")
     id("dev.icerock.mobile.multiplatform")
-    id("dev.icerock.mobile.multiplatform-resources")
+    kotlin("plugin.serialization")
+    id("de.mannodermaus.android-junit5")
+    id("org.jmailen.kotlinter")
 }
 
 android {
-    compileSdkVersion(Versions.Android.compileSdkVersion)
-    buildToolsVersion = Versions.Android.buildToolsVersion
+    compileSdkVersion(Versions.compile_sdk)
     defaultConfig {
-        minSdkVersion(Versions.Android.minSdkVersion)
-        targetSdkVersion(Versions.Android.targetSdkVersion)
-        testInstrumentationRunner = Versions.Android.testInstrumentationRunner
+        minSdkVersion(Versions.min_sdk)
+        targetSdkVersion(Versions.target_sdk)
+        versionCode = 1
+        versionName = "0.1.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArgument("runnerBuilder", "de.mannodermaus.junit5.AndroidJUnit5Builder")
+        vectorDrawables.useSupportLibrary = true
+    }
+    // JUnit 5 will bundle in files with identical paths; exclude them
+    packagingOptions {
+        exclude("META-INF/*.kotlin_module")
+        exclude("META-INF/LICENSE*")
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    testOptions {
-        execution = "ANDROIDX_TEST_ORCHESTRATOR"
+    dataBinding {
+        isEnabled = true
     }
-    packagingOptions {
-        exclude("META-INF/*.kotlin_module")
-        exclude("META-INF/*.md")
+    dexOptions {
+        javaMaxHeapSize = "2g"
     }
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+        }
+        getByName("debug") {
+            isDebuggable = true
+        }
+    }
+}
+
+kotlin.sourceSets["androidTest"].dependencies {
+    implementation(Deps.AndroidXTest.runner)
+    implementation(Deps.AndroidXTest.junit)
+    implementation(Deps.junit_jupiter_api)
+    implementation(Deps.AndroidXTest.core_junit5)
+    implementation(Deps.KotlinTest.junit)
+    implementation(Deps.KotlinTest.annotations)
+    implementation(Deps.KotlinTest.reflect)
+    runtimeOnly(Deps.junit_vintage_engine)
+    runtimeOnly(Deps.AndroidXTest.runner_junit5)
+    implementation("org.robolectric:robolectric:4.0")
 }
 
 dependencies {
-    mppLibrary(Deps.Libs.MultiPlatform.kotlinStdLib)
-    mppLibrary(Deps.Libs.MultiPlatform.coroutines)
-    mppLibrary(Deps.Libs.MultiPlatform.serialization)
-    mppLibrary(Deps.Libs.MultiPlatform.ktorClient)
-    mppLibrary(Deps.Libs.MultiPlatform.ktorClientLogging)
-
-    mppLibrary(Deps.Libs.MultiPlatform.mokoParcelize)
-    mppLibrary(Deps.Libs.MultiPlatform.mokoNetwork)
-    mppLibrary(Deps.Libs.MultiPlatform.mokoResources)
-
+    mppLibrary(Deps.Libs.MultiPlatform.kotlin_std_lib)
+    mppLibrary(Deps.Libs.MultiPlatform.kotlin_reflect)
     mppLibrary(Deps.Libs.MultiPlatform.settings)
     mppLibrary(Deps.Libs.MultiPlatform.napier)
-
-    androidTestImplementation(Deps.Libs.Android.testRunner.name)
-    androidTestUtil(Deps.Libs.Android.testOrchestrator.name)
-    commonTestImplementation(kotlin("test-common"))
-    commonTestImplementation(kotlin("test-annotations-common"))
-    commonTestImplementation(kotlin("test-junit5"))
 }
 
-multiplatformResources {
-    multiplatformResourcesPackage = "io.thumbcat.oss.gtcompanion.mpp.domain"
-}
-
-val generateMRTasks = listOf(
-    "generateMRandroidMain",
-    "generateMRcommonMain",
-    "generateMRiosArm64Main",
-    "generateMRiosX64Main"
-)
-
-val compileKotlinIosArm64: Task by tasks.getting {
-    dependsOn(generateMRTasks)
-}
-
-val compileKotlinIosX64: Task by tasks.getting {
-    dependsOn(generateMRTasks)
-}
-
-tasks.register("iosTest")  {
-    val  device = project.findProperty("iosDevice") as? String ?: "iPhone 11 Pro"
-    dependsOn("linkDebugTestIosX64", "generateMRAll")
+val iOSTest: Task by tasks.creating {
+    val device = project.findProperty("iosDevice")?.toString() ?: "iPhone 8"
+    dependsOn("linkDebugTestIos")
     group = JavaBasePlugin.VERIFICATION_GROUP
-    description = "Runs tests for target 'iosX64' on an iOS simulator"
+    description = "Runs tests for target 'ios' on an iOS simulator"
 
     doLast {
-        val  binary = (kotlin.targets["iosX64"] as org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget).binaries.getTest("DEBUG").outputFile
+        val binary =
+            kotlin.targets.getByName<KotlinNativeTarget>("ios").binaries.getTest(
+                "DEBUG"
+            ).outputFile
         exec {
             commandLine("xcrun", "simctl", "spawn", "--standalone", device, binary.absolutePath)
         }
     }
 }
+
+// dependencies graph generator
+apply(from = "https://raw.githubusercontent.com/JakeWharton/SdkSearch/master/gradle/projectDependencyGraph.gradle")
