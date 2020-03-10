@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package io.thumbcat.oss.gtcompanion.cohorts_explorer
 
 import co.touchlab.stately.ensureNeverFrozen
@@ -12,9 +14,9 @@ import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-typealias CohortsExplorerData = MutableMap<Long, MutableMap<Long, CohortsExplorerRowData>>
+typealias CohortsExplorerData = MutableMap<Long, MutableMap<Long, CohortsExplorerCohort>>
 
-data class CohortsExplorerRowData(
+data class CohortsExplorerCohort(
     val championKey: String,
     val championName: String,
     val followerKey: String,
@@ -22,10 +24,10 @@ data class CohortsExplorerRowData(
     val categoryName: String
 )
 
+@Suppress("MemberVisibilityCanBePrivate", "DuplicatedCode")
 @ExperimentalCoroutinesApi
 class CohortsExplorerViewModel(
-    val eventsDispatcher: EventsDispatcher<CohortRowSelectionListener>,
-    private val viewUpdate: (LiveData<CohortsExplorerData>) -> Unit
+    val eventsDispatcher: EventsDispatcher<CohortRowSelectionListener>
 ) : ViewModel(), KoinComponent {
     private val getCohortsUseCase: GetCohorts by inject()
     private val _cohorts: MutableLiveData<CohortsExplorerData> = MutableLiveData(mutableMapOf())
@@ -52,27 +54,21 @@ class CohortsExplorerViewModel(
                 }
                 .associate { it }
                 .toMutableMap()
-            // for android
-            _cohorts.value = cohorts
-            /* for iOS
-             * MUST be MutableMap. Obj-C doesn't have an implementation for a read-only Map.
-             * MUST be Long otherwise Swift will need to cast to Int32 as 64-bit integers are the default.
-             */
-            viewUpdate(this@CohortsExplorerViewModel.cohorts)
+            _cohorts.postValue(cohorts)
         }
     }
 
-    fun onCohortRowSelected(cohort: CohortsExplorerRowData) {
-        eventsDispatcher.dispatchEvent { routeToWarbandView(cohort) }
+    fun onCohortRowSelected(cohort: CohortsExplorerCohort) {
+        eventsDispatcher.dispatchEvent { routeToCohortRosterView(cohort) }
     }
 
     interface CohortRowSelectionListener {
-        fun routeToWarbandView(cohort: CohortsExplorerRowData)
+        fun routeToCohortRosterView(cohort: CohortsExplorerCohort)
     }
 }
 
-fun GetCohorts.Response.Cohort.toPresentationModel(): CohortsExplorerRowData {
-    return CohortsExplorerRowData(
+fun GetCohorts.Response.Cohort.toPresentationModel(): CohortsExplorerCohort {
+    return CohortsExplorerCohort(
         championKey = champion.key,
         championName = champion.name,
         followerKey = followerUnit.key,

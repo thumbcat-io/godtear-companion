@@ -8,23 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		2971E98A2411E49000E92AC3 /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2971E9892411E49000E92AC3 /* StateController.swift */; };
+		2971E99024171B4200E92AC3 /* WarbandExplorerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2971E98F24171B4200E92AC3 /* WarbandExplorerViewController.swift */; };
 		297D9F6523FA2CA40010575A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297D9F6423FA2CA40010575A /* AppDelegate.swift */; };
 		297D9F6723FA2CA40010575A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297D9F6623FA2CA40010575A /* SceneDelegate.swift */; };
 		297D9F6E23FA2CA60010575A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 297D9F6D23FA2CA60010575A /* Assets.xcassets */; };
 		297D9F7123FA2CA60010575A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 297D9F6F23FA2CA60010575A /* LaunchScreen.storyboard */; };
 		297D9F7C23FA2CA60010575A /* GTCompanionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297D9F7B23FA2CA60010575A /* GTCompanionTests.swift */; };
 		297D9F8723FA2CA60010575A /* GTCompanionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297D9F8623FA2CA60010575A /* GTCompanionUITests.swift */; };
+		29919629241726960003B8EB /* CECohortRosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29919628241726960003B8EB /* CECohortRosterViewController.swift */; };
+		2991962B241738270003B8EB /* WEWarbandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2991962A241738270003B8EB /* WEWarbandViewController.swift */; };
 		29AC151D2404A261004760B5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC151C2404A261004760B5 /* SettingsViewController.swift */; };
 		29AC151F2404A294004760B5 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC151E2404A294004760B5 /* UIViewExtension.swift */; };
 		29AC15212404A2CB004760B5 /* StaticTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC15202404A2CB004760B5 /* StaticTextCell.swift */; };
 		29AC15232404A2E4004760B5 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC15222404A2E4004760B5 /* UITableViewExtension.swift */; };
 		29AC15252404A343004760B5 /* godtear_companion_iOS_launchscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 29AC15242404A343004760B5 /* godtear_companion_iOS_launchscreen.png */; };
-		29AC152C2404A3B5004760B5 /* CohortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC15262404A3B5004760B5 /* CohortViewController.swift */; };
+		29AC152C2404A3B5004760B5 /* CECohortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC15262404A3B5004760B5 /* CECohortViewController.swift */; };
 		29AC152D2404A3B5004760B5 /* CohortsExplorerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC15272404A3B5004760B5 /* CohortsExplorerViewController.swift */; };
-		29AC152E2404A3B5004760B5 /* TraitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC15282404A3B5004760B5 /* TraitViewController.swift */; };
-		29AC152F2404A3B5004760B5 /* CohortRosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC15292404A3B5004760B5 /* CohortRosterViewController.swift */; };
-		29AC15302404A3B5004760B5 /* CohortsExplorerRowDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC152A2404A3B5004760B5 /* CohortsExplorerRowDataExtension.swift */; };
-		29AC15312404A3B5004760B5 /* CardImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC152B2404A3B5004760B5 /* CardImageStore.swift */; };
+		29AC152E2404A3B5004760B5 /* CETraitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC15282404A3B5004760B5 /* CETraitViewController.swift */; };
+		29AC15302404A3B5004760B5 /* CohortsExplorerCohortExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC152A2404A3B5004760B5 /* CohortsExplorerCohortExtension.swift */; };
+		29AC15312404A3B5004760B5 /* CECardImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC152B2404A3B5004760B5 /* CECardImageStore.swift */; };
 		29AC159C240759D4004760B5 /* HexlingsClash.png in Resources */ = {isa = PBXBuildFile; fileRef = 29AC1534240759D4004760B5 /* HexlingsClash.png */; };
 		29AC159D240759D4004760B5 /* RattleboneClash.png in Resources */ = {isa = PBXBuildFile; fileRef = 29AC1535240759D4004760B5 /* RattleboneClash.png */; };
 		29AC159E240759D4004760B5 /* RattleboneLegendaryUnused.png in Resources */ = {isa = PBXBuildFile; fileRef = 29AC1536240759D4004760B5 /* RattleboneLegendaryUnused.png */; };
@@ -137,6 +139,7 @@
 
 /* Begin PBXFileReference section */
 		2971E9892411E49000E92AC3 /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
+		2971E98F24171B4200E92AC3 /* WarbandExplorerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarbandExplorerViewController.swift; sourceTree = "<group>"; };
 		297D9F6123FA2CA40010575A /* GTCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GTCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		297D9F6423FA2CA40010575A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		297D9F6623FA2CA40010575A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -149,17 +152,18 @@
 		297D9F8223FA2CA60010575A /* GTCompanionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GTCompanionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		297D9F8623FA2CA60010575A /* GTCompanionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTCompanionUITests.swift; sourceTree = "<group>"; };
 		297D9F8823FA2CA60010575A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29919628241726960003B8EB /* CECohortRosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CECohortRosterViewController.swift; sourceTree = "<group>"; };
+		2991962A241738270003B8EB /* WEWarbandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WEWarbandViewController.swift; sourceTree = "<group>"; };
 		29AC151C2404A261004760B5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		29AC151E2404A294004760B5 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		29AC15202404A2CB004760B5 /* StaticTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticTextCell.swift; sourceTree = "<group>"; };
 		29AC15222404A2E4004760B5 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		29AC15242404A343004760B5 /* godtear_companion_iOS_launchscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = godtear_companion_iOS_launchscreen.png; sourceTree = "<group>"; };
-		29AC15262404A3B5004760B5 /* CohortViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CohortViewController.swift; sourceTree = "<group>"; };
+		29AC15262404A3B5004760B5 /* CECohortViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CECohortViewController.swift; sourceTree = "<group>"; };
 		29AC15272404A3B5004760B5 /* CohortsExplorerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CohortsExplorerViewController.swift; sourceTree = "<group>"; };
-		29AC15282404A3B5004760B5 /* TraitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraitViewController.swift; sourceTree = "<group>"; };
-		29AC15292404A3B5004760B5 /* CohortRosterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CohortRosterViewController.swift; sourceTree = "<group>"; };
-		29AC152A2404A3B5004760B5 /* CohortsExplorerRowDataExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CohortsExplorerRowDataExtension.swift; sourceTree = "<group>"; };
-		29AC152B2404A3B5004760B5 /* CardImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardImageStore.swift; sourceTree = "<group>"; };
+		29AC15282404A3B5004760B5 /* CETraitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CETraitViewController.swift; sourceTree = "<group>"; };
+		29AC152A2404A3B5004760B5 /* CohortsExplorerCohortExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CohortsExplorerCohortExtension.swift; sourceTree = "<group>"; };
+		29AC152B2404A3B5004760B5 /* CECardImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CECardImageStore.swift; sourceTree = "<group>"; };
 		29AC1534240759D4004760B5 /* HexlingsClash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HexlingsClash.png; sourceTree = "<group>"; };
 		29AC1535240759D4004760B5 /* RattleboneClash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RattleboneClash.png; sourceTree = "<group>"; };
 		29AC1536240759D4004760B5 /* RattleboneLegendaryUnused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RattleboneLegendaryUnused.png; sourceTree = "<group>"; };
@@ -298,6 +302,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		2971E98E24171B1C00E92AC3 /* WarbandExplorer */ = {
+			isa = PBXGroup;
+			children = (
+				2971E98F24171B4200E92AC3 /* WarbandExplorerViewController.swift */,
+				2991962A241738270003B8EB /* WEWarbandViewController.swift */,
+			);
+			path = WarbandExplorer;
+			sourceTree = "<group>";
+		};
 		297D9F5823FA2CA40010575A = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +336,7 @@
 		297D9F6323FA2CA40010575A /* GTCompanion */ = {
 			isa = PBXGroup;
 			children = (
+				2971E98E24171B1C00E92AC3 /* WarbandExplorer */,
 				29AC151B2404A219004760B5 /* CohortsExplorer */,
 				29AC1532240759D4004760B5 /* Cards */,
 				297D9F6423FA2CA40010575A /* AppDelegate.swift */,
@@ -362,11 +376,11 @@
 			isa = PBXGroup;
 			children = (
 				29AC15272404A3B5004760B5 /* CohortsExplorerViewController.swift */,
-				29AC15292404A3B5004760B5 /* CohortRosterViewController.swift */,
-				29AC15262404A3B5004760B5 /* CohortViewController.swift */,
-				29AC15282404A3B5004760B5 /* TraitViewController.swift */,
-				29AC152A2404A3B5004760B5 /* CohortsExplorerRowDataExtension.swift */,
-				29AC152B2404A3B5004760B5 /* CardImageStore.swift */,
+				29919628241726960003B8EB /* CECohortRosterViewController.swift */,
+				29AC15262404A3B5004760B5 /* CECohortViewController.swift */,
+				29AC15282404A3B5004760B5 /* CETraitViewController.swift */,
+				29AC152B2404A3B5004760B5 /* CECardImageStore.swift */,
+				29AC152A2404A3B5004760B5 /* CohortsExplorerCohortExtension.swift */,
 			);
 			path = CohortsExplorer;
 			sourceTree = "<group>";
@@ -851,16 +865,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29AC15302404A3B5004760B5 /* CohortsExplorerRowDataExtension.swift in Sources */,
+				29AC15302404A3B5004760B5 /* CohortsExplorerCohortExtension.swift in Sources */,
 				29AC15212404A2CB004760B5 /* StaticTextCell.swift in Sources */,
+				2991962B241738270003B8EB /* WEWarbandViewController.swift in Sources */,
 				29AC151F2404A294004760B5 /* UIViewExtension.swift in Sources */,
-				29AC152E2404A3B5004760B5 /* TraitViewController.swift in Sources */,
+				29AC152E2404A3B5004760B5 /* CETraitViewController.swift in Sources */,
 				297D9F6523FA2CA40010575A /* AppDelegate.swift in Sources */,
-				29AC15312404A3B5004760B5 /* CardImageStore.swift in Sources */,
-				29AC152C2404A3B5004760B5 /* CohortViewController.swift in Sources */,
+				29AC15312404A3B5004760B5 /* CECardImageStore.swift in Sources */,
+				29AC152C2404A3B5004760B5 /* CECohortViewController.swift in Sources */,
+				29919629241726960003B8EB /* CECohortRosterViewController.swift in Sources */,
+				2971E99024171B4200E92AC3 /* WarbandExplorerViewController.swift in Sources */,
 				297D9F6723FA2CA40010575A /* SceneDelegate.swift in Sources */,
 				2971E98A2411E49000E92AC3 /* StateController.swift in Sources */,
-				29AC152F2404A3B5004760B5 /* CohortRosterViewController.swift in Sources */,
 				29AC151D2404A261004760B5 /* SettingsViewController.swift in Sources */,
 				29AC15232404A2E4004760B5 /* UITableViewExtension.swift in Sources */,
 				29AC152D2404A3B5004760B5 /* CohortsExplorerViewController.swift in Sources */,

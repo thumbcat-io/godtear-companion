@@ -2,8 +2,7 @@
 //  SceneDelegate.swift
 //  GTCompanion
 //
-//  Created by Nicholas J Halase on 2/16/20.
-//  Copyright © 2020 Nicholas J Halase. All rights reserved.
+//  Copyright © 2020 Thumbcat Software Solutions, LLC. All rights reserved.
 //
 
 import UIKit
@@ -21,16 +20,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let tabBarController = UITabBarController()
             let settingsViewController = SettingsViewController()
             
-            let cohortsViewController = CohortsExplorerViewController(
+            let cohortsExplorerViewController = CohortsExplorerViewController(
                 stateController: stateController,
                 settingsViewController: settingsViewController
             )
-            cohortsViewController.title = "Cohorts"
+            cohortsExplorerViewController.title = "Cohorts Explorer"
             
-            let cohortsTabBarItem = UITabBarItem(title: "Browse", image: UIImage(systemName: "person.2"), tag: 0)
-            cohortsViewController.tabBarItem = cohortsTabBarItem
+            let cohortsExplorerTabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "person.2"), tag: 0)
+            cohortsExplorerViewController.tabBarItem = cohortsExplorerTabBarItem
+            
+            let warbandExplorerViewController = WarbandExplorerViewController(
+                stateController: stateController,
+                settingsViewController: settingsViewController
+            )
+            warbandExplorerViewController.title = "Warband Explorer"
+            
+            let warbandsExplorerTabBarItem = UITabBarItem(title: "Warband", image: UIImage(systemName: "person.2"), tag: 1)
+            warbandExplorerViewController.tabBarItem = warbandsExplorerTabBarItem
 
-            let controllers = [cohortsViewController]
+            let controllers = [cohortsExplorerViewController, warbandExplorerViewController]
             tabBarController.viewControllers = controllers.map {
                 UINavigationController(rootViewController: $0)
             }

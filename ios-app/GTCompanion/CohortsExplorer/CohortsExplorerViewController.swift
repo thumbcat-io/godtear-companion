@@ -14,6 +14,7 @@ class CohortsExplorerViewController: UIViewController {
     let tableView: UITableView = .init()
     let stateController: StateController
     let settingsViewController: SettingsViewController
+    private var viewModel: CohortsExplorerViewModel!
     
     init(
         stateController: StateController,
@@ -26,6 +27,22 @@ class CohortsExplorerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let eventsDispatcher = EventsDispatcher<CohortsExplorerViewModelCohortRowSelectionListener>(listener: self)
+        viewModel = CohortsExplorerViewModel(eventsDispatcher: eventsDispatcher)
+        viewModel.cohorts.addObserver { c in
+            guard let cohorts = c else {
+                print("nil cohorts")
+                return
+            }
+            if cohorts.count > 0 {
+                print("\(cohorts.count) cohorts")
+                self.tableView.reloadData()
+            } else {
+                print("zero cohorts")
+            }
+        }
+        
         view.addSubview(tableView)
         tableView.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,
@@ -40,13 +57,8 @@ class CohortsExplorerViewController: UIViewController {
             height: 0,
             enableInsets: false
         )
-//        tableView.allowsMultipleSelection = true
         setBackgroundColors()
-        let eventsDispatcher = EventsDispatcher<CohortsExplorerViewModelCohortRowSelectionListener>(listener: self)
-        let dataSource = CohortsExplorerViewModel(eventsDispatcher: eventsDispatcher) { data in
-            self.tableView.reloadData()
-        }
-        tableView.dataSource = dataSource
+        tableView.dataSource = self.viewModel
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cohortCellIdentifier)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
@@ -81,14 +93,20 @@ class CohortsExplorerViewController: UIViewController {
         navigationController?.pushViewController(settingsViewController, animated: true)
     }
     
+    override func didMove(toParent parent: UIViewController?) {
+        if parent == nil {
+            viewModel.onCleared()
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
 extension CohortsExplorerViewModel {
-    public func data() -> [Int: [Int: CohortsExplorerRowData]] {
-        self.cohorts.value as? [Int: [Int: CohortsExplorerRowData]] ?? [:]
+    public func data() -> [Int: [Int: CohortsExplorerCohort]] {
+        self.cohorts.value as? [Int: [Int: CohortsExplorerCohort]] ?? [:]
     }
 }
 
@@ -106,7 +124,7 @@ extension CohortsExplorerViewModel : UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cohort: CohortsExplorerRowData = data()[indexPath.section]![indexPath.row]!
+        let cohort: CohortsExplorerCohort = data()[indexPath.section]![indexPath.row]!
         let cell = tableView.dequeueReusableCell(withIdentifier: cohortCellIdentifier, for: indexPath)
         cell.textLabel?.text = cohort.championName
         return cell
@@ -115,15 +133,9 @@ extension CohortsExplorerViewModel : UITableViewDataSource {
 
 extension CohortsExplorerViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let dataSource = tableView.dataSource as? CohortsExplorerViewModel else {
-            fatalError("failed to cast dataSource to CohortsExplorerViewModel")
-        }
-        let cohort: CohortsExplorerRowData = dataSource.data()[indexPath.section]![indexPath.row]!
-        dataSource.onCohortRowSelected(cohort: cohort)
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
+        let cohort: CohortsExplorerCohort = viewModel.data()[indexPath.section]![indexPath.row]!
+        stateController.selectCohortsExplorerCohort(cohort: cohort)
+        viewModel.onCohortRowSelected(cohort: cohort)
     }
 }
 
@@ -142,8 +154,8 @@ extension CohortsExplorerViewController {
 }
 
 extension CohortsExplorerViewController : CohortsExplorerViewModelCohortRowSelectionListener {
-    public func routeToWarbandView(cohort: CohortsExplorerRowData) {
-        let cohortRosterViewController = CohortRosterViewController(
+    public func routeToCohortRosterView(cohort: CohortsExplorerCohort) {
+        let cohortRosterViewController = CECohortRosterViewController(
             stateController: stateController,
             cohort: cohort
         )

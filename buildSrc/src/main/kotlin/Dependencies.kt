@@ -110,7 +110,7 @@ object Versions {
             const val serialization = "0.14.0"
             const val ktor_client = "1.2.6"
             const val ktor_client_logging = ktor_client
-            const val moko_mvvm = "0.4.0"
+            const val moko_mvvm = "0.5.0"
             const val moko_parcelize = "0.2.0"
             const val napier = "1.1.0"
             const val settings = "0.5"
